@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'eclipse-wtp'
+    id 'war'
+}
+
+// 자바 소스를 컴파일 할 때 적용할 옵션
+tasks.withType(JavaCompile) {
+    // $javac -encoding UTF-8 ...
+    options.encoding = 'UTF-8';
+}
+
+eclipse {
+    project {
+        name = "haroo2"
+    }
+}
+
+war {
+  archiveBaseName = "haroo2"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    // 썸네일 이미지 생성 라이브러리
+    implementation 'net.coobird:thumbnailator:0.4.14'
+
+    //multipart/form-data 형식으로 넘어온 첨부파일 처리하는 라이브러리
+    implementation 'commons-fileupload:commons-fileupload:1.4'
+
+    // 웹 애플리케이션을 제작할 때 사용하는 Servlet/JSP 라이브러리
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+ 
+    // MariaDB JDBC 드라이버
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:29.0-jre'
+}
+
